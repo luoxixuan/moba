@@ -19,8 +19,8 @@ public class UIWaitForSever : GUIBase
     protected override void Init()
     {
         base.Init();
-        sprite = transform.FindChild("Sprite").GetComponent<UISprite>();
-        bg = transform.FindChild("bg").GetComponent<UISprite>();
+        sprite = transform.Find("Sprite").GetComponent<UISprite>();
+        bg = transform.Find("bg").GetComponent<UISprite>();
         lostTime = maxTimer;
         isShowTime = false;
         sprite.gameObject.SetActive(false);

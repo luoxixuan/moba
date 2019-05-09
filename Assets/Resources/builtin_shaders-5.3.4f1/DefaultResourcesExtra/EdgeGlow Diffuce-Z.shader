@@ -1,4 +1,6 @@
-﻿Shader "Custom/EdgesGlow_Z" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/EdgesGlow_Z" {
     Properties {
         _MainColor("Main Color", Color) = (1,1,1,1)
         _MainTex ("Main Tex(RGB)", 2D) = "white" {}
@@ -60,7 +62,7 @@
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				o.uv = v.texcoord.xy;
 
 				TANGENT_SPACE_ROTATION;
@@ -109,7 +111,7 @@
             VertexOutput vert (VertexInput v) {
                 VertexOutput o;
                 o.uv0 = v.texcoord0;
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+                o.pos = UnityObjectToClipPos(v.vertex);
                 return o;
             }
             

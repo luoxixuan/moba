@@ -116,7 +116,7 @@ public class SDKMgr : MonoBehaviour
         if (nwww == null || !this.nwww.isDone)
             yield return nwww;
 
-        string text  = nwww.data;
+        string text  = nwww.text;
         Dictionary<string, object> aobj = (Dictionary<string, object>)Jsontext.ReadeData(text);
         if (aobj != null)
         {

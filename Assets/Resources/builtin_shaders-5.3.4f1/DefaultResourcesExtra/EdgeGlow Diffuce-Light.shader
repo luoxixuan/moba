@@ -1,4 +1,6 @@
-﻿Shader "Custom/EdgeGlow Diffuce-Light" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/EdgeGlow Diffuce-Light" {
     Properties {
         _MainColor("Main Color", Color) = (1,1,1,1)
         _MainTex ("Main Tex(RGB)", 2D) = "white" {}
@@ -56,7 +58,7 @@
             VertexOutput vert (VertexInput v) {
                 VertexOutput o;
 				o.uv = TRANSFORM_TEX(v.texcoord0, _MainTex);
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+                o.pos = UnityObjectToClipPos(v.vertex);
 				float3 vertNormal = normalize(v.normal);
 				o.texcoord1 = mul(UNITY_MATRIX_MV, float4(vertNormal, 0.0)).rgb;
                 return o;

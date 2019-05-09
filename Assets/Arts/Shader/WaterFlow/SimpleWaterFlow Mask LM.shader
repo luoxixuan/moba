@@ -1,4 +1,6 @@
-﻿// Upgrade NOTE: commented out 'float4 unity_LightmapST', a built-in variable
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+// Upgrade NOTE: commented out 'float4 unity_LightmapST', a built-in variable
 // Upgrade NOTE: commented out 'sampler2D unity_Lightmap', a built-in variable
 // Upgrade NOTE: replaced tex2D unity_Lightmap with UNITY_SAMPLE_TEX2D
 
@@ -37,7 +39,7 @@ Shader "Custom/SimpleWaterFlow Mask LM" {
 	
 	v2f vert(appdata_full i){
 		v2f o;
-		o.pos = mul(UNITY_MATRIX_MVP,i.vertex);
+		o.pos = UnityObjectToClipPos(i.vertex);
 		o.uv = i.texcoord.xy;
 		o.normalUV = o.uv.xyxy * _UVTiling + _Time.xxxx * _UVDirection;
 		#ifdef LIGHTMAP_ON

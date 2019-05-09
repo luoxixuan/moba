@@ -363,7 +363,7 @@ public class StartLandingShuJu : MonoBehaviour
         yield return mWWW;
         if (this.mWWW == null || !this.mWWW.isDone)
             yield return mWWW;
-        string text = this.mWWW.data;
+        string text = this.mWWW.text;
         if (this.mWWW.error == null)
         {
             //读json串

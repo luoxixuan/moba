@@ -21,7 +21,7 @@ public class UITaskItem : GUISingleItemList
 
     protected override void InitItem()
     {
-        btn = transform.FindChild("Btn").GetComponent<GUISingleButton>();
+        btn = transform.Find("Btn").GetComponent<GUISingleButton>();
     }
 
     //这样写有点扯 该写个类的

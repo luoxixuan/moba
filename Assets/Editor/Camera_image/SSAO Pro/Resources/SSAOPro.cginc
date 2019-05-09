@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // SSAO Pro - Unity Asset
 // Copyright (c) 2015 - Thomas Hourdel
 // http://www.thomashourdel.com
@@ -167,7 +169,7 @@
 	v_data_simple vert_ssao(appdata_img v)
 	{
 		v_data_simple o;
-		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 		o.uv = v.texcoord;
         	
 		#if UNITY_UV_STARTS_AT_TOP
@@ -221,7 +223,7 @@
 	v_data_blur vert_gaussian(appdata_img v)
 	{
 		v_data_blur o;
-		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 		o.uv = MultiplyUV(UNITY_MATRIX_TEXTURE0, v.texcoord);
 		float2 d1 = 1.3846153846 * _Direction;
 		float2 d2 = 3.2307692308 * _Direction;
@@ -247,7 +249,7 @@
 	v_data_blur vert_bilateral(appdata_img v)
 	{
 		v_data_blur o;
-		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 		o.uv = MultiplyUV(UNITY_MATRIX_TEXTURE0, v.texcoord);
 		float2 d2 = 2.0 * _Direction;
 		o.uv1 = float4(o.uv + _Direction, o.uv - _Direction);
@@ -282,7 +284,7 @@
 	v_data_blur vert_hqbilateral(appdata_img v)
 	{
 		v_data_blur o;
-		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 		o.uv = MultiplyUV(UNITY_MATRIX_TEXTURE0, v.texcoord);
 		float2 d1 = 1.3846153846 * _Direction;
 		float2 d2 = 3.2307692308 * _Direction;
@@ -323,7 +325,7 @@
 	v_data_simple vert_composite(appdata_img v)
 	{
 		v_data_simple o;
-		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 		o.uv = v.texcoord;
         	
 		#if UNITY_UV_STARTS_AT_TOP

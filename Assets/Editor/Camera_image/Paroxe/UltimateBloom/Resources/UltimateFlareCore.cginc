@@ -1,4 +1,6 @@
-﻿
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+
 #include "UnityCG.cginc"
 
 struct v2f 
@@ -41,7 +43,7 @@ half2 tUV(half2 uv)
 v2f vert( appdata_img v ) 
 {
 	v2f o;
-	o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+	o.pos = UnityObjectToClipPos(v.vertex);
 	o.uv =  v.texcoord.xy;
 
 	half scale0 = _FlareScales.x;

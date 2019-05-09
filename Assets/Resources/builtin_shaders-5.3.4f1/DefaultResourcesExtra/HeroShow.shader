@@ -1,4 +1,6 @@
-﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 // Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
 
 Shader "Custom/HeroShow" 
@@ -92,7 +94,7 @@ Shader "Custom/HeroShow"
 			  	float3x3 rotation = float3x3(vertTangent, binormal, vertNormal);				
 			    float4 viewDir = float4((_WorldSpaceCameraPos - mul(unity_ObjectToWorld,  v.vertex).xyz), 0);
 
-			    o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+			    o.pos = UnityObjectToClipPos(v.vertex);
 			    o.texcoord0 = mainUV_NoiseUV;
 			    o.texcoord1 = mul(UNITY_MATRIX_MV, float4(vertNormal, 0.0)).xyz;
 			    o.texcoord2 = normalize(mul(rotation, mul(unity_WorldToObject, viewDir).xyz));

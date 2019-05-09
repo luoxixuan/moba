@@ -1,4 +1,6 @@
-﻿Shader "Mobile/Particles/Additive" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Mobile/Particles/Additive" {
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
@@ -17,7 +19,7 @@
 
 	v2f vert(appdata_full v){
 		v2f o;
-		o.pos = mul(UNITY_MATRIX_MVP,v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 		o.uv = TRANSFORM_TEX(v.texcoord,_MainTex);
 		o.color = v.color;
 		return o;

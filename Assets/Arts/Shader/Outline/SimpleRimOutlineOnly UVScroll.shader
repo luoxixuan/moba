@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
 Shader "Level4/Outline/SimpleRimOutlineOnly UVScroll" {
@@ -36,7 +38,7 @@ Shader "Level4/Outline/SimpleRimOutlineOnly UVScroll" {
 		*/
 		v2f vert(appdata_base i){
 			v2f o;
-			o.pos = mul(UNITY_MATRIX_MVP,i.vertex);
+			o.pos = UnityObjectToClipPos(i.vertex);
 			o.viewDir = _WorldSpaceCameraPos.xyz - mul(unity_ObjectToWorld,i.vertex).xyz;
 			// o.viewDir = WorldSpaceViewDir(i.vertex);
 			float3 offset = mul((float3x3)UNITY_MATRIX_MVP,i.normal);

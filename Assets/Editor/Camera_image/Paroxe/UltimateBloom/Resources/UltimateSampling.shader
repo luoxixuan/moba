@@ -1,4 +1,6 @@
-﻿Shader "Hidden/Ultimate/Sampling"
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Hidden/Ultimate/Sampling"
 {
 	Properties
 	{
@@ -32,7 +34,7 @@
 	v2f vert( appdata_img v ) 
 	{
 		v2f o;
-		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 		o.uv =  v.texcoord.xy;
 		return o;
 	} 
@@ -51,7 +53,7 @@
 	v2fLow vertLow( appdata_img v ) 
 	{
 		v2fLow o; 
-		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 		o.uv =  v.texcoord.xy;
 
 		o.uv01 =  v.texcoord.xyxy + _OffsetInfos.xyxy * half4(1,1, -1,-1);

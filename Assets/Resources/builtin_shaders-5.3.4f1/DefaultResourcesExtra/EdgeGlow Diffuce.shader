@@ -1,4 +1,6 @@
-﻿Shader "Custom/EdgesGlow" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/EdgesGlow" {
     Properties {
         _MainColor("Main Color", Color) = (1,1,1,1)
         _MainTex ("Main Tex(RGB)", 2D) = "white" {}
@@ -44,7 +46,7 @@
             VertexOutput vert (VertexInput v) {
                 VertexOutput o;
 				o.uv = TRANSFORM_TEX(v.texcoord0, _MainTex);
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+                o.pos = UnityObjectToClipPos(v.vertex);
                 return o;
             }
 

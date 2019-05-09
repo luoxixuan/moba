@@ -1,4 +1,6 @@
-﻿Shader "Custom/SimpleWaterFlow Mask" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/SimpleWaterFlow Mask" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 		_BumpMap("BumpMap",2d) = ""{}
@@ -27,7 +29,7 @@
 	
 	v2f vert(appdata_base i){
 		v2f o;
-		o.pos = mul(UNITY_MATRIX_MVP,i.vertex);
+		o.pos = UnityObjectToClipPos(i.vertex);
 		o.uv = i.texcoord.xy;
 		o.normalUV = o.uv.xyxy * _UVTiling + _Time.xxxx * _UVDirection;
 		return o;

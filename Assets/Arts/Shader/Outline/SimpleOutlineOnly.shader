@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Level4/Outline/SimpleOutlineOnly" {
 	Properties {
 		_OutlineColor("Outline Color",color) = (0,0,0,0)
@@ -24,7 +26,7 @@ Shader "Level4/Outline/SimpleOutlineOnly" {
 		*/
 		v2f vert(appdata_custom i){
 			v2f o;
-			o.pos = mul(UNITY_MATRIX_MVP,i.vertex);
+			o.pos = UnityObjectToClipPos(i.vertex);
 			float3 offset = mul((float3x3)UNITY_MATRIX_MVP,i.normal);
 			
 			o.pos.xy += offset.xy * _Outline;

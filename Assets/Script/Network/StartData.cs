@@ -55,7 +55,7 @@ public class StartData : MonoBehaviour {
         yield return nWWW;
         if (nWWW == null || !nWWW.isDone)
             yield return nWWW;
-        string text = nWWW.data;
+        string text = nWWW.text;
         if (nWWW.error == null)
         {
             Dictionary<string, object> aobj = (Dictionary<string, object>)Jsontext.ReadeData(text);
